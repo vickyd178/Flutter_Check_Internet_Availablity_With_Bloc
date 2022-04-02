@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             textTheme:
                 GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme)),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

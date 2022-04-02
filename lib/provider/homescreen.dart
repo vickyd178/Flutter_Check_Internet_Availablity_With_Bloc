@@ -12,12 +12,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Center(
-            child: BlocConsumer<InternetBloc, InternetState>(
+        child: BlocConsumer<InternetBloc, InternetState>(
           listener: (context, state) => {
             if (state is InternetGainedState)
               {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Internet connected!"),
                   backgroundColor: Colors.green,
                 ))
@@ -25,46 +24,68 @@ class HomeScreen extends StatelessWidget {
             else if (state is InternetLostState)
               {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("Internet disonnected!"),
+                  const SnackBar(
+                    content: Text("Internet disconnected!"),
                     backgroundColor: Colors.redAccent,
                   ),
                 )
               }
           },
           builder: (context, state) {
-            if (state is InternetGainedState) {
-              return Column(
+            return SingleChildScrollView(
+              child: Column(
                 children: [
+                  if (state is InternetLostState) ...{
+                    Image.asset(
+                      "assets/no_internet.png",
+                      width: 300,
+                    ),
+                  },
                   Container(
                     height: 150,
-                    margin: EdgeInsets.all(15),
+                    margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                               blurRadius: 10,
                               color: Colors.grey.shade300,
-                              offset: Offset(3, 10)),
+                              offset: const Offset(3, 10)),
                           BoxShadow(
                               blurRadius: 10,
                               color: Colors.grey.shade300,
-                              offset: Offset(-3, -1)),
+                              offset: const Offset(-3, -1)),
                         ],
                         color: Colors.amber,
                         borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
+                        image: const DecorationImage(
+                            image: AssetImage("assets/food_image.png"),
+                            fit: BoxFit.cover)),
+                  ),
+                  Container(
+                    height: 150,
+                    margin: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.grey.shade300,
+                              offset: const Offset(3, 10)),
+                          BoxShadow(
+                              blurRadius: 10,
+                              color: Colors.grey.shade300,
+                              offset: const Offset(-3, -1)),
+                        ],
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(15),
+                        image: const DecorationImage(
                             image: AssetImage("assets/food_image.png"),
                             fit: BoxFit.cover)),
                   ),
                 ],
-              );
-            } else if (state is InternetLostState) {
-              return Image.asset("assets/no_internet.png");
-            } else {
-              return Text("Loading...");
-            }
+              ),
+            );
           },
-        )),
+        ),
       ),
     );
   }
