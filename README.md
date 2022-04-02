@@ -1,7 +1,7 @@
-# provider_demo
+#Flutter_Check_Internet_Availablity_With_Bloc
 
 
-Flutter_Check_Internet_Availablity_With_Bloc
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
