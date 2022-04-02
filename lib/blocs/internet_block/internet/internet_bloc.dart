@@ -17,9 +17,7 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
         _connectivity.onConnectivityChanged.listen((result) {
       if (result == ConnectivityResult.mobile ||
           result == ConnectivityResult.wifi) {
-        if (state is! InternetGainedEvent) {
-          add(InternetGainedEvent());
-        }
+        
       } else {
         add(InternetLostEvent());
       }
