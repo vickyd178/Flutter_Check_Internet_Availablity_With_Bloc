@@ -1,6 +1,6 @@
-# provider_demo
+# Flutter_Check_Internet_Availablity_With_Bloc
 
-A new Flutter project.
+
 
 ## Getting Started
 
